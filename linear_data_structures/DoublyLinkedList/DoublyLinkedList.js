@@ -1,4 +1,4 @@
-const Node = require('./Node');
+const Node = require('../Node/Node');
 
 class DoublyLinkedList {
     constructor() {
@@ -93,7 +93,11 @@ class DoublyLinkedList {
         let currentNode = this.head;
         let output = `<HEAD> `;
         while (currentNode) {
-            output += `${currentNode.data} `;
+            if(currentNode.getNextNode()) {
+                output += `${currentNode.data}, `;
+            } else {
+                output += `${currentNode.data} `;
+            }
             currentNode = currentNode.getNextNode();
         }
         output += `<TAIL>`;
@@ -101,21 +105,21 @@ class DoublyLinkedList {
     }
 }
 
-// const subway = new DoublyLinkedList();
+const subway = new DoublyLinkedList();
 
-// subway.addToHead('TimesSquare');
-// subway.addToHead('GrandCentral');
-// subway.addToHead('CentralPark');
+subway.addToHead(1);
+// subway.addToHead(2);
+// subway.addToHead(3);
 
-// subway.addToTail('PennStation');
-// subway.addToTail('WallStreet');
+subway.addToTail(2);
+subway.addToTail(3);
 // subway.addToTail('BrooklynBridge');
 
 // subway.removeHead();
 // subway.removeTail();
 // subway.removeByData('TimesSquare');
 
-// subway.printList();
+subway.printList();
 
 
 
