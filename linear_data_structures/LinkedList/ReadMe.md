@@ -1,10 +1,9 @@
 # Linked List
-A linked list is a collection of nodes chained together. 
+A linked list is a collection of [nodes](../Node/ReadMe.md) chained together. 
 
 The `LinkedList` class has a starting node, or `head`, and ending node, or `tail`. The list can be traversed in one direction from `head` to `tail`.
 
-The `head` node is stored as a property in the `LinkedList`, while the `tail` is found by iterating through the list.
-<!-- TO DO: Add tail property? -->
+The `head` node is stored as a property in the `LinkedList`, while the `tail` is found by iterating through the list. See [Doubly Linked List](../DoublyLinkedList/ReadMe.md) if tracking the `tail` is desired.
 
 ## Constructor
 The list is created without any arguments and populated using the `addToHead` and `addToTail` methods below.
