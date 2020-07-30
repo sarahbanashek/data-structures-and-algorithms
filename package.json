@@ -1,0 +1,11 @@
+{
+  "name": "data_structures",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scriptToAddIlluminateItems.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC"
+}
