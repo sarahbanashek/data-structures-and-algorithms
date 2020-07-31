@@ -1,17 +1,21 @@
-const LinkedList = require('./LinkedList');
+const LinkedList = require('../LinkedList/LinkedList');
 
 class Stack {
-    constructor (maxSize = Infinity)
+    constructor (maxSize = Infinity, logger = null)
     {
         this.stack = new LinkedList();
         this.size = 0;
         this.maxSize = maxSize;
+        this.logger = logger;
     }
 
     push(value) {
         if (this.hasRoom()) {
             this.stack.addToHead(value);
             this.size++;
+            if (this.logger !== null){
+                this.logger.log(`Added ${value}. Stack size is ${this.size}.`)
+            }
         } else {
             throw new Error('Stack is full.');
         }
@@ -21,6 +25,9 @@ class Stack {
         if (!this.isEmpty()) {
             const value = this.stack.removeHead();
             this.size--;
+            if (this.logger !== null){
+                this.logger.log(`Removed ${value}. Stack size is ${this.size}.`)
+            }
             return value;
         } else {
             throw new Error('Stack is empty.');
@@ -43,6 +50,10 @@ class Stack {
         return this.size === 0
             ? true
             : false;
+    }
+
+    printStack() {
+        return this.stack.printList();
     }
 }
 
