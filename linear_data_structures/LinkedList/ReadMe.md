@@ -43,7 +43,7 @@ list.printList();
 ```
 
 ### \#.printList
-Prints to the console the information stored in each node's `data` property in order from the linked list's `head` to its `tail`.
+Prints to the console the information stored in each node's `data` property in order from the linked list's `head` to its `tail`. `<HEAD>` and `<TAIL>` markers are added to denote the start and end of the list.
 ```
 list.printList();
 >>> <HEAD> 1, 2, 3 <TAIL>
