@@ -117,7 +117,7 @@ subway.addToTail(3);
 
 // subway.removeHead();
 // subway.removeTail();
-// subway.removeByData('TimesSquare');
+subway.removeByData(2);
 
 subway.printList();
 
