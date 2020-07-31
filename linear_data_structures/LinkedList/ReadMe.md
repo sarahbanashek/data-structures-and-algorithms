@@ -12,7 +12,7 @@ const list = new LinkedList();
 ```
 
 ## Methods
-### \#.addToHead
+### \#.addToHead()
 Given data as an argument, creates a new node and adds it to the head of the list. 
 ```
 list.addToHead('some data');
@@ -21,7 +21,7 @@ list.printList();
 >>> <HEAD> some data <TAIL>
 ```
 
-### \#.addToTail
+### \#.addToTail()
 Given data as an argument, creates a new node and adds it to the `tail` of the list. 
 ```
 list.addToTail('some more data');
@@ -30,7 +30,7 @@ list.printList();
 >>> <HEAD> some data, some more data <TAIL>
 ```
 
-### \#.removeHead
+### \#.removeHead()
 Removes the node stored in the `head` property and sets that node's `next` node as the new `head`.
 ```
 list.printList();
@@ -42,7 +42,7 @@ list.printList();
 >>> <HEAD> 2, 3 <TAIL>
 ```
 
-### \#.printList
+### \#.printList()
 Prints to the console the information stored in each node's `data` property in order from the linked list's `head` to its `tail`. `<HEAD>` and `<TAIL>` markers are added to denote the start and end of the list.
 ```
 list.printList();

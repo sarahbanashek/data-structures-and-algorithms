@@ -7,8 +7,7 @@ The `Queue` class has a property `queue`, which is an instance of the `LinkedLis
 The `size` and `maxSize` are stored as properties of the `Queue`.
 
 ## Constructor
-The queue has two optional arguments: the first specifies its maximum size (default is `Infinity`), and the second is an optional logger used to log events (expected to conform to the console interface). 
-It is populated using the `enqueue` method below.
+The queue has two optional arguments: the first specifies its maximum size (default is `Infinity`), and the second is an optional logger used to log events (expected to conform to the console interface). It is populated using the `enqueue` method below.
 ```
 const queue = new Queue(maxSize, logger);
 
@@ -17,7 +16,7 @@ const debugQueue = new Queue(Infinity, console);
 ```
 
 ## Methods
-### \#.enqueue(arg)
+### \#.enqueue()
 Given data as an argument, creates a new node and adds it to the tail of the `queue` property. 
 ```
 queue.enqueue('First in');

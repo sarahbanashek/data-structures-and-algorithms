@@ -12,7 +12,7 @@ const list = new DoublyLinkedList();
 ```
 
 ## Methods
-### \#.addToHead
+### \#.addToHead()
 Given data as an argument, creates a new node and adds it to the head of the list. 
 ```
 list.addToHead('some data');
@@ -21,7 +21,7 @@ list.printList();
 >>> <HEAD> some data <TAIL>
 ```
 
-### \#.addToTail
+### \#.addToTail()
 Given data as an argument, creates a new node and adds it to the `tail` of the list. 
 ```
 list.addToTail('some more data');
@@ -30,7 +30,7 @@ list.printList();
 >>> <HEAD> some data, some more data <TAIL>
 ```
 
-### \#.removeHead
+### \#.removeHead()
 Removes the node stored in the `head` property and sets that node's `next` node as the new `head`.
 ```
 list.printList();
@@ -42,7 +42,7 @@ list.printList();
 >>> <HEAD> 2, 3 <TAIL>
 ```
 
-### \#.removeTail
+### \#.removeTail()
 Removes the node stored in the `tail` property and sets that node's `previous` node as the new `tail`.
 ```
 list.printList();
@@ -54,7 +54,7 @@ list.printList();
 >>> <HEAD> 1, 2 <TAIL>
 ```
 
-### \#.removeByData
+### \#.removeByData()
 Given the data of any node in the list, redirects that node's surrounding nodes to point to each other. (The given node's `previous` node will have its `next` property updated to the given node's `next` node.)
 ```
 list.printList();
@@ -66,7 +66,7 @@ list.printList();
 >>> <HEAD> 1, 3 <TAIL>
 ```
 
-### \#.printList
+### \#.printList()
 Prints to the console the information stored in each node's `data` property in order from the linked list's `head` to its `tail`. `<HEAD>` and `<TAIL>` markers are added to denote the start and end of the list.
 ```
 list.printList();

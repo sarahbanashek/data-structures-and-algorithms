@@ -14,27 +14,27 @@ console.log(node);
 ```
 
 ## Methods
-### \#.setNextNode
-Sets the node stored in the given node's `.next` property.
+### \#.setNextNode()
+Sets the node stored in the given node's `next` property.
 ```
 node.setNextNode(new Node('some data'));
 ```
 
-### \#.setPreviousNode
-Sets the node stored in the given node's `.previous` property.
+### \#.setPreviousNode()
+Sets the node stored in the given node's `previous` property.
 ```
 node.setPreviousNode(new Node('some more data'));
 ```
 
-### \#.getNextNode
-Returns the node stored in the given node's `.next` property.
+### \#.getNextNode()
+Returns the node stored in the given node's `next` property.
 ```
 console.log( node.getNextNode() );
 >>> Node { data: 'some data', next: null, previous: null }
 ```
 
-### \#.getNextNode
-Returns the node stored in the given node's `.previous` property.
+### \#.getNextNode()
+Returns the node stored in the given node's `previous` property.
 ```
 console.log( node.getPreviousNode() );
 >>> Node { data: 'some more data', next: null, previous: null }
