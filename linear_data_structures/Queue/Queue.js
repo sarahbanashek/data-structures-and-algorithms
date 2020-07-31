@@ -1,17 +1,20 @@
-const LinkedList = require('..LinkedList/LinkedList');
+const LinkedList = require('../LinkedList/LinkedList');
 
 class Queue {
-    constructor(maxSize = Infinity) {
+    constructor(maxSize = Infinity, logger = null) {
         this.queue = new LinkedList();
         this.size = 0;
         this.maxSize = maxSize;
+        this.logger = logger;
     }
 
     enqueue(data) {
         if (this.hasRoom()) {
             this.queue.addToTail(data);
             this.size++;
-            console.log(`Added ${data}. Queue size: ${this.size}.`);
+            if(this.logger !== null) {
+                this.logger.log(`Added ${data}. Queue size: ${this.size}.`);
+            }
         } else {
             throw new Error('Queue is full');
         }
@@ -21,7 +24,9 @@ class Queue {
         if (!this.isEmpty()) {
             const data = this.queue.removeHead();
             this.size--;
-            console.log(`Removed ${data}. Queue size: ${this.size}.`);
+            if (this.logger !== null) {
+                this.logger.log(`Removed ${data}. Queue size: ${this.size}.`);
+            }
             return data;
         } else {
             throw new Error('Queue is empty');
@@ -40,6 +45,24 @@ class Queue {
             ? true
             : false;
     }
+
+    peek() {
+        return !this.isEmpty()
+            ? this.queue.head.data
+            : null;
+    }
+
+    printQueue() {
+        return this.queue.printList();
+    }
 }
+
+const queue = new Queue(Infinity, console);
+queue.enqueue('First in');
+queue.enqueue('Second in');
+queue.enqueue('Third in');
+console.log(queue.peek());
+// queue.dequeue();
+queue.printQueue();
 
 module.exports = Queue;
