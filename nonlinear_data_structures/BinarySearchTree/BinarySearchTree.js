@@ -1,4 +1,4 @@
-class BinaryTree {
+class BinarySearchTree {
     constructor(value, depth = 1) {
         this.value = value;
         this.depth = depth;
@@ -11,13 +11,13 @@ class BinaryTree {
             if (this.left) {
                 this.left.insert(value);
             } else {
-                this.left = new BinaryTree(value, this.depth + 1);
+                this.left = new BinarySearchTree(value, this.depth + 1);
             }
         } else {
             if (this.right) {
                 this.right.insert(value);
             } else {
-                this.right = new BinaryTree(value, this.depth + 1);
+                this.right = new BinarySearchTree(value, this.depth + 1);
             }
         }
     }
@@ -45,15 +45,17 @@ class BinaryTree {
     }
 }
 
-const bt = new BinaryTree(15);
+const binarySearchTree = new BinarySearchTree(15);
 let numbers = [ 12, 20, 10, 13, 18, 22, 8, 11, 12, 14, 16, 19, 21, 25 ];
+numbers.forEach(num => binarySearchTree.insert(num));
 
-for (let i = 0; i < numbers.length; i++) {
-  bt.insert(numbers[i]);
-//   console.log(`Insert ${numbers[i]}`);
-}
+// for (let i = 0; i < numbers.length; i++) {
+//   bt.insert(numbers[i]);
+// //   console.log(`Insert ${numbers[i]}`);
+// }
 
 console.log('Depth First Traversal');
-bt.printDepthFirstTraversal();
+binarySearchTree.printDepthFirstTraversal();
+// console.log(binarySearchTree.getNodeByValue(12));
 
-module.exports = BinaryTree;
+module.exports = BinarySearchTree;
