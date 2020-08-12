@@ -4,75 +4,75 @@ class PriorityQueue {
         this.size = 0;
     }
   
-    add({vertex, priority}) {
-        this.heap.push({vertex, priority});
+    add({node, priority}) {
+        this.heap.push({node, priority});
         this.size++;
-        this.bubbleUp();
-    }
-  
-    isEmpty() {
-        return this.size === 0;
+        this._bubbleUp();
     }
   
     popMin() {
-        if (this.size === 0) {
+        if (this._isEmpty()) {
             return null 
         }
         const min = this.heap[1];
         this.heap[1] = this.heap[this.size];
         this.size--;
         this.heap.pop();
-        this.heapify();
+        this._heapify();
         return min;
     }
   
-    bubbleUp() {
+    _bubbleUp() {
         let current = this.size;
         while (current > 1 && this.heap[getParent(current)].priority > this.heap[current].priority) {
-            this.swap(current, getParent(current));
+            this._swap(current, getParent(current));
             current = getParent(current);
         }
     }
   
-    heapify() {
+    _heapify() {
         let current = 1;
         let leftChild = getLeft(current);
         let rightChild = getRight(current);
         // Check that there is something to swap (only need to check the left if both exist)
-        while (this.canSwap(current, leftChild, rightChild)){
+        while (this._canSwap(current, leftChild, rightChild)){
             // Only compare left & right if they both exist
-            if (this.exists(leftChild) && this.exists(rightChild)) {
+            if (this._exists(leftChild) && this._exists(rightChild)) {
                 // Make sure to swap with the smaller of the two children
                 if (this.heap[leftChild].priority < this.heap[rightChild].priority) {
-                    this.swap(current, leftChild);
+                    this._swap(current, leftChild);
                     current = leftChild;
                 } else {
-                    this.swap(current, rightChild);
+                    this._swap(current, rightChild);
                     current = rightChild;
                 }
             } else {
                 // If only one child exist, always swap with the left
-                this.swap(current, leftChild);
+                this._swap(current, leftChild);
                 current = leftChild;
             }
             leftChild = getLeft(current);
             rightChild = getRight(current);
         }
     }
+
+    _isEmpty() {
+        return this.size === 0;
+    }
   
-    swap(a, b) {
+    _swap(a, b) {
         [this.heap[a], this.heap[b]] = [this.heap[b], this.heap[a]];
     }
   
-    exists(index) {
+    _exists(index) {
         return index <= this.size;
     }
   
-    canSwap(current, leftChild, rightChild) {
+    _canSwap(current, leftChild, rightChild) {
         // Check that one of the possible swap conditions exists
         return (
-            this.exists(leftChild) && this.heap[current].priority > this.heap[leftChild].priority
-            || this.exists(rightChild) && this.heap[current].priority > this.heap[rightChild].priority
+            this._exists(leftChild) && this.heap[current].priority > this.heap[leftChild].priority
+            || this._exists(rightChild) && this.heap[current].priority > this.heap[rightChild].priority
         );
     }
 }
