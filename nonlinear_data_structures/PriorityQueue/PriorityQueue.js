@@ -1,11 +1,17 @@
+/**
+ * TODO: 
+ * - add `addNewHighestPriority()` convenience method that creates a new highest priority element and puts it in the queue
+ * - allow user to specify the backing heap type of the priority queue (min vs max)
+ */
+
 class PriorityQueue {
     constructor() {
         this.heap = [null];
         this.size = 0;
     }
   
-    add({node, priority}) {
-        this.heap.push({node, priority});
+    add({data, priority}) {
+        this.heap.push({data, priority});
         this.size++;
         this._bubbleUp();
     }
@@ -20,6 +26,16 @@ class PriorityQueue {
         this.heap.pop();
         this._heapify();
         return min;
+    }
+
+    peek() {
+        return !this._isEmpty()
+            ? this.heap[1]
+            : null
+    }
+
+    printQueue() {
+        console.log(this.heap);
     }
   
     _bubbleUp() {
@@ -80,5 +96,19 @@ class PriorityQueue {
 const getParent = current => Math.floor((current / 2));
 const getLeft = current => current * 2;
 const getRight = current => current * 2 + 1;
+
+
+
+// helper function to return a random integer
+function randomize() { return Math.floor(Math.random() * 50); }
+
+const rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+
+const priorityQueue = new PriorityQueue();
+rainbow.forEach(color => priorityQueue.add({data: color, priority: randomize()}));
+
+priorityQueue.printQueue();
+
+
 
 module.exports = PriorityQueue;
