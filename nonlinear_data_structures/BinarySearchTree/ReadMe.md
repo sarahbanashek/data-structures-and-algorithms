@@ -4,7 +4,7 @@ A [binary search tree](https://en.wikipedia.org/wiki/Binary_search_tree) is a da
 The value of the left child is always less than the parent node, and the value of the right child is always greater than the parent node.
 
 ## Constructor
-The binary search tree is instantiated with a single argument representing the root of the tree.
+The binary search tree takes a single argument representing the root of the tree.
 ```
 const binarySearchTree = new BinarySearchTree(value);
 ```
