@@ -10,7 +10,7 @@ class Stack {
     }
 
     push(value) {
-        if (this.hasRoom()) {
+        if (this._hasRoom()) {
             this.stack.addToHead(value);
             this.size++;
             if (this.logger !== null){
@@ -22,7 +22,7 @@ class Stack {
     }
 
     pop() {
-        if (!this.isEmpty()) {
+        if (!this._isEmpty()) {
             const value = this.stack.removeHead();
             this.size--;
             if (this.logger !== null){
@@ -35,18 +35,18 @@ class Stack {
     }
 
     peek() {
-        return !this.isEmpty()
+        return !this._isEmpty()
             ? this.stack.head.data
             : null;
     }
 
-    hasRoom() {
+    _hasRoom() {
         return this.size < this.maxSize
             ? true
             : false;
     }
 
-    isEmpty() {
+    _isEmpty() {
         return this.size === 0
             ? true
             : false;
@@ -57,16 +57,5 @@ class Stack {
     }
 }
 
-
-// const pizzaStack = new Stack(6);
-// for (let i = 1; i <= 6; i++) {
-//   pizzaStack.push(`Pizza #${i}`);
-// }
-// console.log(pizzaStack);
-// console.log(`The first pizza to deliver is ${pizzaStack.peek()}`);
-// for (let i = 1; i <= 6; i++) {
-//     pizzaStack.pop();
-// }
-// console.log(pizzaStack);
 
 module.exports = Stack;
