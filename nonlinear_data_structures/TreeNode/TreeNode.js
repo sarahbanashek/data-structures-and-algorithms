@@ -10,18 +10,32 @@ class TreeNode {
         } else {
             this.children.push(new TreeNode(child));
         }
+        return this.children[this.children.length - 1];
     }
 
     removeChild(childToRemove) {
         const length = this.children.length;
         this.children = this.children.filter(child => {
-            childToRemove instanceof TreeNode ?
-                childToRemove !== child :
-                childToRemove !== child.data
+            return childToRemove instanceof TreeNode 
+                ? childToRemove !== child 
+                : childToRemove !== child.data
 
         })
         if (length === this.children.length) {
             this.children.forEach(child => child.removeChild(childToRemove));
+        }
+    }
+
+    getChildByData(data) {
+        for (const child of this.children) {
+            if (child.data === data) {
+                return child;
+            } else {
+                const match = child.getChildByData(data);
+                if (match) {
+                    return match;
+                }
+            }
         }
     }
 
@@ -31,7 +45,7 @@ class TreeNode {
             tree += '--';
         }
         console.log(`${tree} ${this.data}`);
-        this.children.forEach(child => child.print(level + 1));
+        this.children.forEach(child => child.printTree(level + 1));
     }
 
     printDepthFirstTraversal() {
@@ -48,5 +62,5 @@ class TreeNode {
         }
     }
   };
-  
+
 module.exports = TreeNode;
