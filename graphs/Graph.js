@@ -1,3 +1,5 @@
+const Queue = require('../linear_data_structures/Queue/Queue');
+
 class Graph {
     constructor(isDirected = false, isWeighted = false) {
         this.vertices = [];
@@ -42,7 +44,30 @@ class Graph {
         return this.vertices.find(vertex => vertex.data === value);
     }
 
-    print() {
+    printGraph(traversalType, startingVertex) {
+        if (traversalType === 'breadth') {
+            const visitedVertices = [startingVertex];
+            const visitQueue = new Queue();
+            visitQueue.enqueue(startingVertex);
+    
+            while (!visitQueue.isEmpty()) {
+                const current = visitQueue.dequeue();
+                console.log(current.data);
+
+                current.edges.forEach(edge => {
+                    const neighbor = edge.end;
+                    if (!visitedVertices.includes(neighbor)) {
+                        visitedVertices.push(neighbor);
+                        visitQueue.enqueue(neighbor);
+                    }
+                });
+            
+                console.log(visitedVertices);
+            }
+        }
+    }
+
+    printVertices() {
         this.vertices.forEach(vertex => vertex.print());
     }
 }
