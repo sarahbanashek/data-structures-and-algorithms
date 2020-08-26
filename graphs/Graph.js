@@ -14,18 +14,28 @@ class Graph {
     }
 
     removeVertex(vertex) {
-        this.vertices = this.vertices.filter(v => v !== vertex);
+        if (vertex instanceof Vertex) {
+            this.vertices = this.vertices.filter(v => v !== vertex);
+        } else {
+            this.vertices = this.vertices.filter(v => v.data !== vertex);
+        }
+        
     }
 
     addEdge(vertex1, vertex2, weight) {
+        const edgeWeight = this.isWeighted ? weight : null;
         if (vertex1 instanceof Vertex && vertex2 instanceof Vertex) {
-            let edgeWeight = this.isWeighted ? weight : null;
             vertex1.addEdge(vertex2, edgeWeight);
             if (!this.isDirected) {
                 vertex2.addEdge(vertex1, edgeWeight);
             }
         } else {
-            throw new Error('Expected Vertex arguments.');
+            const v1 = this.vertices.find(vertex => vertex.data === vertex1);
+            const v2 = this.vertices.find(vertex => vertex.data === vertex2);
+            v1.addEdge(v2, edgeWeight);
+            if (!this.isDirected) {
+                v2.addEdge(v1, edgeWeight);
+            }
         }
     }
 
@@ -44,27 +54,37 @@ class Graph {
         return this.vertices.find(vertex => vertex.data === value);
     }
 
-    printGraph(traversalType, startingVertex) {
-        if (traversalType === 'breadth') {
-            const visitedVertices = [startingVertex];
-            const visitQueue = new Queue();
-            visitQueue.enqueue(startingVertex);
-    
-            while (!visitQueue.isEmpty()) {
-                const current = visitQueue.dequeue();
-                console.log(current.data);
-
-                current.edges.forEach(edge => {
-                    const neighbor = edge.end;
-                    if (!visitedVertices.includes(neighbor)) {
-                        visitedVertices.push(neighbor);
-                        visitQueue.enqueue(neighbor);
-                    }
-                });
-            
-                console.log(visitedVertices);
+    traverseDepthFirst(startingVertex, callback = function(vertex) {console.log(vertex.data)}, visitedVertices = [startingVertex]) {
+        callback(startingVertex);
+        startingVertex.edges.forEach(edge => {
+            const neighbor = edge.end;
+            if (!visitedVertices.includes(neighbor)) {
+                visitedVertices.push(neighbor);
+                this.traverseDepthFirst(neighbor, callback, visitedVertices);
             }
+        });
+    }
+
+    traverseBreadthFirst(startingVertex, callback = function(visitedVertices) {
+      for (const vertex of visitedVertices) {
+        console.log(vertex.data);
+    }}) {
+        const visitedVertices = [startingVertex];
+        const visitQueue = new Queue();
+        visitQueue.enqueue(startingVertex);
+
+        while (!visitQueue.isEmpty()) {
+            const current = visitQueue.dequeue();
+
+            current.edges.forEach(edge => {
+                const neighbor = edge.end;
+                if (!visitedVertices.includes(neighbor)) {
+                    visitedVertices.push(neighbor);
+                    visitQueue.enqueue(neighbor);
+                }
+            });
         }
+        callback(visitedVertices);
     }
 
     printVertices() {
@@ -139,4 +159,4 @@ class Edge {
 
 // trainNetwork.print();
 
-module.exports = Graph;
+module.exports = {Graph, Vertex, Edge};
