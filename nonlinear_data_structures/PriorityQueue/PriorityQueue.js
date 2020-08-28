@@ -17,7 +17,7 @@ class PriorityQueue {
     }
   
     popMin() {
-        if (this._isEmpty()) {
+        if (this.isEmpty()) {
             return null 
         }
         const min = this.heap[1];
@@ -29,7 +29,7 @@ class PriorityQueue {
     }
 
     peek() {
-        return !this._isEmpty()
+        return !this.isEmpty()
             ? this.heap[1]
             : null
     }
@@ -72,7 +72,7 @@ class PriorityQueue {
         }
     }
 
-    _isEmpty() {
+    isEmpty() {
         return this.size === 0;
     }
   
@@ -102,12 +102,12 @@ const getRight = current => current * 2 + 1;
 // helper function to return a random integer
 function randomize() { return Math.floor(Math.random() * 50); }
 
-const rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+// const rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 
-const priorityQueue = new PriorityQueue();
-rainbow.forEach(color => priorityQueue.add({data: color, priority: randomize()}));
+// const priorityQueue = new PriorityQueue();
+// rainbow.forEach(color => priorityQueue.add({data: color, priority: randomize()}));
 
-priorityQueue.printQueue();
+// priorityQueue.printQueue();
 
 
 

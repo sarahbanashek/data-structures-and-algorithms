@@ -31,6 +31,9 @@ priorityQueue.printQueue();
 >>>   { data: 'violet', priority: 49 } ]
 ```
 
+### \#.isEmpty()
+Returns `true` if the size of the priority queue is zero, otherwise returns `false`.
+
 ### \#.peek()
 Returns the highest priority object in the priority queue without removing it.
 ```
