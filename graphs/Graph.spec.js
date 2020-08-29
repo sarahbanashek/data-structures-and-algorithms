@@ -101,5 +101,16 @@ describe('Class: Graph', () => {
                 expect(results.previous).toStrictEqual(expectedPrevious);
             });
         });
+
+        describe('Method: shortestPath', () => {
+            it('Should return distance and path to target vertex', () => {
+                const expectedDistance = -38;
+                const expectedPath = [a, d, e, g];
+                const results = graph.shortestPath(a, g);
+
+                expect(results.distance).toEqual(expectedDistance);
+                expect(results.path).toStrictEqual(expectedPath);
+            })
+        });
     });
 });
