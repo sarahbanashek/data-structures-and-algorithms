@@ -1,11 +1,11 @@
 const testGraph = require('./testGraph2');
-const PriorityQueue = require('../../nonlinear_data_structures/PriorityQueue');
+const PriorityQueue = require('../../nonlinear_data_structures/PriorityQueue/PriorityQueue');
 
 const dijkstras = (graph, startingVertex) => {
     const distances = {};
     const previous = {};
     const queue = new PriorityQueue();
-    queue.add({ vertex: startingVertex, priority: 0 });
+    queue.add({ data: startingVertex, priority: 0 });
 
     graph.vertices.forEach(vertex => {
         distances[vertex.data] = Infinity;
@@ -14,17 +14,17 @@ const dijkstras = (graph, startingVertex) => {
     distances[startingVertex.data] = 0;
 
     while (!queue.isEmpty()) {
-        const { vertex } = queue.popMin();
+        const vertex = queue.popMin().data;
 
         vertex.edges.forEach(edge => {
             const alternate = edge.weight + distances[vertex.data];
             const neighbor = edge.end;
-            const neighborName = edge.end.data;
+            const neighborData = edge.end.data;
 
-            if (alternate < distances[neighborName]) {
-                distances[neighborName] = alternate;
-                previous[neighborName] = vertex;
-                queue.add({vertex: neighbor, priority: distances[neighborName]});
+            if (alternate < distances[neighborData]) {
+                distances[neighborData] = alternate;
+                previous[neighborData] = vertex;
+                queue.add({data: neighbor, priority: distances[neighborData]});
             }
         })
     }
