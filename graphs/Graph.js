@@ -121,6 +121,19 @@ class Graph {
         }
         return { distances, previous };
     }
+
+    shortestPath(startingVertex, targetVertex) {
+        const { distances, previous } = this.dijkstras(startingVertex);
+        const distance = distances[targetVertex.data];
+        const path = [];
+        let vertex = targetVertex;
+    
+        while (vertex) {
+            path.unshift(vertex);
+            vertex = previous[vertex.data];
+        }
+        return {distance, path};
+    }
 }
 
 
