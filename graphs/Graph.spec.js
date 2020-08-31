@@ -7,6 +7,7 @@ describe('Class: Graph', () => {
             const graph = new Graph();
             const vertexData = 'vertex';
             const vertex = new Vertex(vertexData);
+            
             graph.addVertex(vertexData);
 
             expect(graph.vertices).toContainEqual(vertex);         
@@ -14,21 +15,67 @@ describe('Class: Graph', () => {
     });
 
     describe('Method: removeVertex', () => {
+        const graph = new Graph();
         it('Should remove a vertex by vertex instance', () => {
-            const graph = new Graph();
-            const vertexData = 'vertex';
-            const vertex = graph.addVertex(vertexData);
+            const vertex = graph.addVertex('vertex');
+            
             graph.removeVertex(vertex);
 
-            expect(graph.vertices).toHaveLength(0);
+            expect(graph.vertices).toEqual(expect.not.arrayContaining([vertex]));
         });
         it('Should remove a vertex by data', () => {
-            const graph = new Graph();
             const vertexData = 'vertex';
-            graph.addVertex(vertexData);
+            const vertex = graph.addVertex(vertexData);
+           
             graph.removeVertex(vertexData);
 
-            expect(graph.vertices).toHaveLength(0);
+            expect(graph.vertices).toEqual(expect.not.arrayContaining([vertex]));
+        });
+        it('Should do nothing if given vertex not included in graph', () => {
+            const vertex = graph.addVertex('vertex');
+
+            graph.removeVertex('not a vertex');
+
+            expect(graph.vertices).toStrictEqual([vertex]);
+        })
+    });
+
+    describe('Method: removeEdge', () => {
+        it('Should remove edges in both directions in an undirected graph', () => {
+            // also checks edge removal by vertex instance & for weighted graph
+            const graph = new Graph(false, true);
+            const a = graph.addVertex('A');
+            const b = graph.addVertex('B');
+            graph.addEdge(a, b, 10);
+
+            graph.removeEdge(a, b);
+
+            expect(a.edges).toHaveLength(0);
+            expect(b.edges).toHaveLength(0);
+        });
+
+        it('Should remove edges in one direction in a directed graph', () => {
+            // also checks edge removal by vertex data
+            const graph = new Graph(true);
+            const a = graph.addVertex('A');
+            const b = graph.addVertex('B');
+            graph.addEdge(a, b);
+            graph.addEdge(b, a);
+
+            graph.removeEdge('A', 'B');
+
+            expect(a.edges).toHaveLength(0);
+            expect(b.edges).toHaveLength(1);
+        });
+
+        it('Should not throw an error if given vertices that don\'t share an edge', () => {
+            const graph = new Graph;
+            const a = graph.addVertex('A');
+            const b = graph.addVertex('B');
+
+            expect(() => {
+                graph.removeEdge(a, b);
+              }).not.toThrow();
         });
     });
 
@@ -96,7 +143,9 @@ describe('Class: Graph', () => {
                     E: d,
                     F: e,
                     G: e };
+                
                 const results = graph.dijkstras(graph.vertices[0]);
+                
                 expect(results.distances).toStrictEqual(expectedDistances);
                 expect(results.previous).toStrictEqual(expectedPrevious);
             });
@@ -106,11 +155,12 @@ describe('Class: Graph', () => {
             it('Should return distance and path to target vertex', () => {
                 const expectedDistance = -38;
                 const expectedPath = [a, d, e, g];
+                
                 const results = graph.shortestPath(a, g);
 
                 expect(results.distance).toEqual(expectedDistance);
                 expect(results.path).toStrictEqual(expectedPath);
-            })
+            });
         });
     });
 });
