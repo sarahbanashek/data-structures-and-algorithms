@@ -47,7 +47,12 @@ class Graph {
                 vertex2.removeEdge(vertex1);
             }
         } else {
-            throw new Error('Expected Vertex arguments.');
+            const v1 = this.vertices.find(vertex => vertex.data === vertex1);
+            const v2 = this.vertices.find(vertex => vertex.data === vertex2);
+            v1.removeEdge(v2);
+            if (!this.isDirected) {
+                v2.removeEdge(v1);
+            }
         }
     }
 
@@ -174,33 +179,5 @@ class Edge {
         this.weight = weight;
     }
 }
-
-
-// const trainNetwork = new Graph(true, true);
-
-// const la = trainNetwork.addVertex('Los Angeles');
-// const sf = trainNetwork.addVertex('San Francisco');
-// const ny = trainNetwork.addVertex('New York');
-// const atlanta = trainNetwork.addVertex('Atlanta');
-// const denver = trainNetwork.addVertex('Denver');
-// const calgary = trainNetwork.addVertex('Calgary');
-
-// trainNetwork.addEdge(la, sf, 400);
-// trainNetwork.addEdge(sf, la, 400);
-// trainNetwork.addEdge(ny, denver, 1800);
-// trainNetwork.addEdge(denver, ny, 1800);
-// trainNetwork.addEdge(calgary, denver, 1000);
-// trainNetwork.addEdge(denver, calgary, 1000);
-// trainNetwork.addEdge(la, atlanta, 2100);
-// trainNetwork.addEdge(atlanta, la, 2100);
-
-// trainNetwork.print();
-
-// trainNetwork.removeEdge(ny, denver);
-// trainNetwork.removeEdge(calgary, denver);
-// trainNetwork.removeEdge(denver, calgary);
-// trainNetwork.removeVertex(calgary);
-
-// trainNetwork.print();
 
 module.exports = {Graph, Vertex, Edge};
