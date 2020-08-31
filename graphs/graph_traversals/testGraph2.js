@@ -1,4 +1,4 @@
-const Graph = require('../Graph');
+const {Graph} = require('../Graph');
 
 const testGraph = new Graph(true, true);
 const a = testGraph.addVertex('A');
