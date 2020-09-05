@@ -93,7 +93,7 @@ class Graph {
         callback(visitedVertices);
     }
 
-    printVertices() {
+    printGraph() {
         this.vertices.forEach(vertex => vertex.print());
     }
 
@@ -166,7 +166,7 @@ class Vertex {
                 ? edge.end.data
                 : `${edge.end.data} (${edge.weight})`;
         });
-        const display = `${this.data} --> ${edgeList.join(',\n\t\t')}`
+        const display = `${this.data} --> ${edgeList.join(', ')}`
         console.log(display);
     }
 }
