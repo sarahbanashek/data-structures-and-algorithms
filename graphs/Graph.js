@@ -137,7 +137,7 @@ class Graph {
             path.unshift(vertex);
             vertex = previous[vertex.data];
         }
-        return {distance, path};
+        return { distance, path };
     }
 }
 
