@@ -5,7 +5,7 @@
 
 ### Performance
 Time complexity: O(n<sup>2</sup>)  
-Space complexity: O(n)
+Space complexity: O(1)
 
 Bubble sort is not recommended for large arrays or arrays that are in reverse order.
 
@@ -29,3 +29,39 @@ bubbleSort(unsorted, true);
 >>>  Swapping pair 2, 1 in [2,1,3,4]
 ```
 ---
+
+## Merge Sort
+[Merge Sort](https://en.wikipedia.org/wiki/Merge_sort) is a divide and conquer method of sorting an array into ascending order. Given an array of length n, the array is broken into n subarrays containing a single element. The subarrays are then merged repeatedly until a single, sorted array is left.
+
+### Performance
+Time complexity: O(n log n)  
+Space complexity: O(n)
+
+### Use
+```
+mergeSort(arr, log);
+```
+`mergeSort` takes an array as its first argument and has an optional second argument, `log`, that prints the merging of the final two arrays to the console when set to `true`.
+```
+const unsorted = [3, 5, 2, 90, 4, 7];
+const sorted = mergeSort(unsorted);
+console.log(sorted);
+>>> [2, 3, 4, 5, 7, 90]
+
+mergeSort(unsorted, true);
+>>>  left arr: [2,3,5] 
+>>>  right arr: [4,7,90]
+>>>  merging: [2]
+>>>  
+>>>  left arr: [3,5] 
+>>>  right arr: [4,7,90]
+>>>  merging: [2,3]
+>>>  
+>>>  left arr: [5] 
+>>>  right arr: [4,7,90]
+>>>  merging: [2,3,4]
+>>>  
+>>>  left arr: [5] 
+>>>  right arr: [7,90]
+>>>  merging: [2,3,4,5]
+```
