@@ -1,3 +1,9 @@
+/* 
+TODO: 
+- add method to check if two vertices are neighbors
+- add method to list the nighbors of a vertex
+- add method to change the value associated with a vertex
+*/
 const Queue = require('../linear_data_structures/Queue/Queue');
 const PriorityQueue = require('../nonlinear_data_structures/PriorityQueue/PriorityQueue');
 
