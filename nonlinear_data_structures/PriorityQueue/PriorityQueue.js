@@ -1,4 +1,4 @@
-/**
+/*
  * TODO: 
  * - add `addNewHighestPriority()` convenience method that creates a new highest priority element and puts it in the queue
  * - allow user to specify the backing heap type of the priority queue (min vs max)
