@@ -1,14 +1,17 @@
-const quickSort = (arr, leftBound = 0, rightBound = arr.length - 1) => {
+const quickSort = (arr, log = false, leftBound = 0, rightBound = arr.length - 1) => {
+    if (!(arr instanceof Array)) {
+        throw new Error('Expected array');
+    }
     if (rightBound > leftBound) {
-        const pivotIndex = partition(arr, leftBound, rightBound);
-        quickSort(arr, leftBound, pivotIndex - 1);
-        quickSort(arr, pivotIndex, rightBound);
+        const pivotIndex = partition(arr, log, leftBound, rightBound);
+        quickSort(arr, log, leftBound, pivotIndex - 1);
+        quickSort(arr, log, pivotIndex, rightBound);
     }
     return arr;
 }
 
 
-const partition = (arr, leftIndex, rightIndex) => {
+const partition = (arr, log, leftIndex, rightIndex) => {
     const pivot = arr[Math.floor((leftIndex + rightIndex) / 2)];
     while (leftIndex <= rightIndex) {
         // move left pointer forward
@@ -20,7 +23,13 @@ const partition = (arr, leftIndex, rightIndex) => {
             rightIndex--;
         }
         if (leftIndex <= rightIndex) {
+            if (log) {
+                console.log(`swapping ${arr[leftIndex]} and ${arr[rightIndex]}`);
+            }
             swap(arr, leftIndex, rightIndex);
+            if (log) {
+                console.log(`updated array: [${arr}]`);            
+            }
             leftIndex++;
             rightIndex--;
         }
@@ -34,19 +43,4 @@ const swap = (arr, index1, index2) => {
 }
 
 
-const randomize = () => Math.floor(Math.random() * 40);
-
-let numbers = [];
-
-for (let i = 0; i < 5; i++) {
-  numbers.push(randomize());
-}
-
-console.log('Before quickSort: ', numbers);
-const sorted = quickSort(numbers);
-console.log('After  quickSort: ', sorted);
-
-
-
-
-module.exports = partition;
+module.exports = quickSort;
