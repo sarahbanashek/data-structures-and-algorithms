@@ -65,3 +65,35 @@ mergeSort(unsorted, true);
 >>>  right arr: [7,90]
 >>>  merging: [2,3,4,5]
 ```
+---
+
+## Quicksort
+[Quicksort](https://en.wikipedia.org/wiki/Quicksort) is a divide and conquer algorithm for sorting an array into ascending order. This method chooses a pivot element, then partitions the array into two subarrays: one in which elements are less than the pivot and one in which elements are greater than the pivot. The subarrays are then sorted recursively.
+
+### Performance
+Time complexity: O(n log n)  
+Space complexity: O(n)  *O(1) primary space with O(n) auxillary for the callstack*
+
+### Use
+```
+quickSort(arr, log);
+```
+`quickSort` takes an array as its first argument and has an optional second argument, `log`, that prints the elements that are swapped at each step as well as the current order of the array when set to `true`.
+```
+const unsorted = [3, 5, 2, 90, 4, 7];
+const sorted = quickSort(unsorted);
+console.log(sorted);
+>>> [2, 3, 4, 5, 7, 90]
+
+quickSort(unsorted, true);
+>>>  swapping 3 and 2
+>>>  updated array: [2,5,3,90,4,7]
+>>>  swapping 90 and 7
+>>>  updated array: [2,5,3,7,4,90]
+>>>  swapping 5 and 3
+>>>  updated array: [2,3,5,7,4,90]
+>>>  swapping 7 and 4
+>>>  updated array: [2,3,5,4,7,90]
+>>>  swapping 5 and 4
+>>>  updated array: [2,3,4,5,7,90]
+```
