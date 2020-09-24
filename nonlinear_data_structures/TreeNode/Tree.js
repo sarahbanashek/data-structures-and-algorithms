@@ -1,14 +1,14 @@
-class TreeNode {
+class Tree {
     constructor(data) {
       this.data = data;
       this.children = [];
     }
 
     addChild(child) {
-        if (child instanceof TreeNode) {
+        if (child instanceof Tree) {
             this.children.push(child);
         } else {
-            this.children.push(new TreeNode(child));
+            this.children.push(new Tree(child));
         }
         return this.children[this.children.length - 1];
     }
@@ -16,7 +16,7 @@ class TreeNode {
     removeChild(childToRemove) {
         const length = this.children.length;
         this.children = this.children.filter(child => {
-            return childToRemove instanceof TreeNode 
+            return childToRemove instanceof Tree 
                 ? childToRemove !== child 
                 : childToRemove !== child.data
 
@@ -63,4 +63,4 @@ class TreeNode {
     }
   };
 
-module.exports = TreeNode;
+module.exports = Tree;

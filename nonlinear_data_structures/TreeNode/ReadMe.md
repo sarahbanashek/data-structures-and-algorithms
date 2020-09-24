@@ -1,23 +1,23 @@
-# Tree Node
-The `TreeNode` class follows the basic [tree](https://en.wikipedia.org/wiki/Tree_(data_structure)) data structure.
+# Tree
+The `Tree` class follows the basic [tree](https://en.wikipedia.org/wiki/Tree_(data_structure)) data structure.
 
-Each `TreeNode` instance has a `data` property and a `children` property which stores all child nodes in an array.
+Each `Tree` instance has a `data` property and a `children` property which stores all child nodes in an array.
 
 ## Constructor
-The `TreeNode` takes a single argument representing the data to be stored as the root node of the tree.
+The `Tree` takes a single argument representing the data to be stored as the root node of the tree.
 ```
-const treeNode = new TreeNode('a');
+const tree = new Tree('a');
 ```
 
 ## Methods
 ### \#.addChild()
-Takes either data or `TreeNode` instance as an argument and pushes onto the parent node's `children` array. Returns the added node.
+Takes either data or `Tree` instance as an argument and pushes onto the parent node's `children` array. Returns the added node.
 ```
-treeNode.addChild('b');
-treeNode.addChild('c');
-treeNode.addChild('d').addChild(1);
+tree.addChild('b');
+tree.addChild('c');
+tree.addChild('d').addChild(1);
 
-treeNode.printTree();
+tree.printTree();
 >>>   a
 >>>  -- b
 >>>  -- c
@@ -26,11 +26,11 @@ treeNode.printTree();
 ```
 
 ### \#.removeChild()
-Takes either data or `TreeNode` instance as an argument and removes all matching nodes from the parent node's `children` array.
+Takes either data or `Tree` instance as an argument and removes all matching nodes from the parent node's `children` array.
 ```
-treeNode.removeChild('c');
+tree.removeChild('c');
 
-treeNode.printTree();
+tree.printTree();
 >>>   a
 >>>  -- b
 >>>  -- d
@@ -40,18 +40,18 @@ treeNode.printTree();
 ### \#.getChildByData()
 Takes data as an argument and returns the first matching node. Returns `undefined` if no match is found.
 ```
-console.log( treeNode.getChildByData('d') );
+console.log( tree.getChildByData('d') );
 
->>>  TreeNode { data: 'd', children: [ TreeNode { data: 1, children: [] } ] }
+>>>  tree { data: 'd', children: [ tree { data: 1, children: [] } ] }
 
 
-treeNode.getChildByData('b').addChild(2);
+tree.getChildByData('b').addChild(2);
 ```
 
 ### \#.printTree()
 Prints the tree's structure to the console. For each level below the parent node, two dashes are added before the node's data.
 ```
-treeNode.printTree();
+tree.printTree();
 >>>   a
 >>>  -- b
 >>>  ---- 2
@@ -62,7 +62,7 @@ treeNode.printTree();
 ### \#.printDepthFirstTraversal()
 Prints each node's data to the console in depth-first order.
 ```
-treeNode.printDepthFirstTraversal();
+tree.printDepthFirstTraversal();
 >>>  a
 >>>  b
 >>>  2
@@ -73,7 +73,7 @@ treeNode.printDepthFirstTraversal();
 ### \#.printBreadthFirstTraversal()
 Prints each node's data to the console in breadth-first order.
 ```
-treeNode.printBreadthFirstTraversal();
+tree.printBreadthFirstTraversal();
 >>>  a
 >>>  b
 >>>  d
