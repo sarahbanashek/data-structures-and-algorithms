@@ -1,7 +1,7 @@
 # Binary Search Tree
 A [binary search tree](https://en.wikipedia.org/wiki/Binary_search_tree) is a data structure in which each node has at most two children (left child and right child).
 
-The value of the left child is always less than the parent node, and the value of the right child is always greater than the parent node.
+The value of the left child is always less than the parent node, and the value of the right child is always greater than or equal to the parent node.
 
 ## Constructor
 The binary search tree takes a single argument representing the root of the tree.
@@ -11,9 +11,13 @@ const binarySearchTree = new BinarySearchTree(value);
 
 ## Methods
 ### \#.insert()
-Given a value as an argument, adds a new child node to the tree while maintaining correct value order.
+Given a value as an argument, adds a new child node to the tree while maintaining correct value order. Returns the new node.
 ```
 binarySearchTree.insert(value);
+
+const five = binarySearchTree.insert(5);
+console.log(five);
+>>>  BinarySearchTree { value: 5, depth: 2, left: null, right: null }
 ```
 
 ### \#.getNodeByValue()
