@@ -102,18 +102,5 @@ const getParentIndex = current => Math.floor((current / 2));
 const getLeftChildIndex = current => current * 2;
 const getRightChildIndex = current => current * 2 + 1;
 
-// helper function to return a random integer
-function randomize() { return Math.floor(Math.random() * 50); }
-
-const rainbow = ['orange', 'yellow', 'green', 'blue'];
-
-const priorityQueue = new PriorityQueue();
-rainbow.forEach(color => priorityQueue.add({data: color, priority: randomize()}));
-
-priorityQueue.printQueue();
-
-priorityQueue.addNewHighestPriority('red');
-priorityQueue.printQueue();
-
 
 module.exports = PriorityQueue;
