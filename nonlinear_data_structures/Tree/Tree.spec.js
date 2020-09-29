@@ -5,7 +5,6 @@ describe('Class: Tree', () => {
         const tree = new Tree('root node');
         it('adds a Tree instance as a child', () => {
             const child = new Tree('Tree instance');
-            
             tree.addChild(child);
 
             expect(tree.children).toEqual(expect.arrayContaining([child]));

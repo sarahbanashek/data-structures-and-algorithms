@@ -2,7 +2,7 @@ const BinarySearchTree = require('./BinarySearchTree');
 
 describe('Class: BinarySearchTree', () => {
     describe('Method: insert', () => {
-        it('should place lower value in left and greater value in right', () => {
+        it('places lower values on left and greater values on right', () => {
             const tree = new BinarySearchTree(15);
             const ten = tree.insert(10);
             const twenty = tree.insert(20);
@@ -10,7 +10,7 @@ describe('Class: BinarySearchTree', () => {
             expect(tree.left).toEqual(ten);
             expect(tree.right).toEqual(twenty);
         });
-        it('should insert into next level if necessary', () => {
+        it('inserts into next level if necessary', () => {
             const tree = new BinarySearchTree(15);
             const twenty = tree.insert(20);
             const twentyfive = tree.insert(25);
