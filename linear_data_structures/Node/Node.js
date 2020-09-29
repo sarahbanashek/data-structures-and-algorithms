@@ -9,7 +9,7 @@ class Node {
         if (node instanceof Node || node === null) {
             this.next = node;
         } else {
-            throw new Error('Next node must be a member of the Node class')
+            this.next = new Node(node);
         }
     }
   
@@ -17,7 +17,7 @@ class Node {
         if (node instanceof Node || node === null) {
             this.previous = node;
         } else {
-            throw new Error('Next node must be a member of the Node class')
+            this.previous = new Node(node);
         }
     }
   
