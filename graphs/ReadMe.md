@@ -71,6 +71,13 @@ graph.removeEdge(a, b);
 graph.removeEdge('A', 'B');
 ```
 
+### \#.adjacent()
+Takes a start vertex and an end vertex as arguments. Returns `true` if the end vertex can be found in the edges of the start vertex, otherwise returns `false`.
+```
+graph.adjacent(startVertex, endVertex);
+```
+If the graph is directed, it is important to input the vertices in the correct order.
+
 ### \#.getVertexByValue()
 Returns the vertex associated with the given value.
 ```

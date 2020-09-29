@@ -3,7 +3,7 @@ const {Graph, Vertex, Edge} = require('./Graph');
 
 describe('Class: Graph', () => {
     describe('Method: addVertex', () => {
-        it('Should add a vertex', () => {
+        it('adds a vertex', () => {
             const graph = new Graph();
             const vertexData = 'vertex';
             const vertex = new Vertex(vertexData);
@@ -16,14 +16,14 @@ describe('Class: Graph', () => {
 
     describe('Method: removeVertex', () => {
         const graph = new Graph();
-        it('Should remove a vertex by vertex instance', () => {
+        it('removes a vertex by vertex instance', () => {
             const vertex = graph.addVertex('vertex');
             
             graph.removeVertex(vertex);
 
             expect(graph.vertices).toEqual(expect.not.arrayContaining([vertex]));
         });
-        it('Should remove a vertex by data', () => {
+        it('removes a vertex by data', () => {
             const vertexData = 'vertex';
             const vertex = graph.addVertex(vertexData);
            
@@ -31,7 +31,7 @@ describe('Class: Graph', () => {
 
             expect(graph.vertices).toEqual(expect.not.arrayContaining([vertex]));
         });
-        it('Should do nothing if given vertex not included in graph', () => {
+        it('does nothing if given vertex not included in the graph', () => {
             const vertex = graph.addVertex('vertex');
 
             graph.removeVertex('not a vertex');
@@ -41,7 +41,7 @@ describe('Class: Graph', () => {
     });
 
     describe('Method: removeEdge', () => {
-        it('Should remove edges in both directions in an undirected graph', () => {
+        it('removes edges in both directions in an undirected graph', () => {
             // also checks edge removal by vertex instance & for weighted graph
             const graph = new Graph(false, true);
             const a = graph.addVertex('A');
@@ -54,7 +54,7 @@ describe('Class: Graph', () => {
             expect(b.edges).toHaveLength(0);
         });
 
-        it('Should remove edges in one direction in a directed graph', () => {
+        it('removes edges in one direction in a directed graph', () => {
             // also checks edge removal by vertex data
             const graph = new Graph(true);
             const a = graph.addVertex('A');
@@ -68,14 +68,14 @@ describe('Class: Graph', () => {
             expect(b.edges).toHaveLength(1);
         });
 
-        it('Should not throw an error if given vertices that don\'t share an edge', () => {
+        it('throws an error if given vertices that don\'t share an edge', () => {
             const graph = new Graph;
             const a = graph.addVertex('A');
             const b = graph.addVertex('B');
 
             expect(() => {
                 graph.removeEdge(a, b);
-              }).not.toThrow();
+              }).toThrow();
         });
     });
 
@@ -88,7 +88,7 @@ describe('Class: Graph', () => {
         edges.forEach(startAndEnd => graph.addEdge(startAndEnd[0], startAndEnd[1]));
 
         describe('Method: traverseDepthFirst', () => {
-            it('Should record depth-first order', () => {
+            it('records depth-first order', () => {
                 const expected = ['a', 'b', 'd', 'e', 'c', 'f'];
                 
                 const resultArr = [];
@@ -99,7 +99,7 @@ describe('Class: Graph', () => {
         });
 
         describe('Method: traverseBreadthFirst', () => {
-            it('Should record breadth-first order', () => {
+            it('records breadth-first order', () => {
                 const expected = ['a', 'b', 'c', 'd', 'f', 'e'];
                 const resultArr = [];
                 graph.traverseBreadthFirst(graph.vertices[0], function(visitedVertices) {
@@ -134,7 +134,7 @@ describe('Class: Graph', () => {
         graph.addEdge(e, g, -50);
 
         describe('Method: dijkstras', () => {
-            it('Should return shortest distances & previously visited vertices', () => {
+            it('returns the shortest distances & previously visited vertices', () => {
                 const expectedDistances = { A: 0, B: 3, C: 7, D: 4, E: 12, F: 22, G: -38 };
                 const expectedPrevious = { A: null,
                     B: a,
@@ -152,7 +152,7 @@ describe('Class: Graph', () => {
         });
 
         describe('Method: shortestPath', () => {
-            it('Should return distance and path to target vertex', () => {
+            it('returns the distance and path to target vertex', () => {
                 const expectedDistance = -38;
                 const expectedPath = [a, d, e, g];
                 

@@ -1,6 +1,5 @@
 /* 
 TODO: 
-- add method to check if two vertices are neighbors
 - add method to list the nighbors of a vertex
 - add method to change the value associated with a vertex
 */
@@ -48,6 +47,9 @@ class Graph {
 
     removeEdge(vertex1, vertex2) {
         if (vertex1 instanceof Vertex && vertex2 instanceof Vertex) {
+            if (!this.adjacent(vertex1, vertex2)) {
+                throw new Error(`There is no edge to remove between ${vertex1.data} and ${vertex2.data}`);
+            }
             vertex1.removeEdge(vertex2);
             if (!this.isDirected) {
                 vertex2.removeEdge(vertex1);
@@ -55,6 +57,9 @@ class Graph {
         } else {
             const v1 = this.vertices.find(vertex => vertex.data === vertex1);
             const v2 = this.vertices.find(vertex => vertex.data === vertex2);
+            if (!this.adjacent(v1, v2)) {
+                throw new Error(`There is no edge to remove between ${v1.data} and ${v2.data}`);
+            }
             v1.removeEdge(v2);
             if (!this.isDirected) {
                 v2.removeEdge(v1);
@@ -64,6 +69,22 @@ class Graph {
 
     getVertexByValue(value) {
         return this.vertices.find(vertex => vertex.data === value);
+    }
+    
+    adjacent(startVertex, endVertex) {
+        if (startVertex instanceof Vertex && endVertex instanceof Vertex) {
+            const edgeMatch = startVertex.edges.find(edge => edge.end === endVertex);
+            return edgeMatch
+                ? true
+                : false;
+        } else {
+            const start = this.vertices.find(vertex => vertex.data === startVertex);
+            const end = this.vertices.find(vertex => vertex.data === endVertex);
+            const edgeMatch = start.edges.find(edge => edge.end === end);
+            return edgeMatch
+                ? true
+                : false;
+        }
     }
 
     traverseDepthFirst(startingVertex, callback = function(vertex) {console.log(vertex.data)}, visitedVertices = [startingVertex]) {
