@@ -1,6 +1,5 @@
 /*
  * TODO: 
- * - add `addNewHighestPriority()` convenience method that creates a new highest priority element and puts it in the queue
  * - allow user to specify the backing heap type of the priority queue (min vs max)
  */
 
@@ -15,10 +14,16 @@ class PriorityQueue {
         this.size++;
         this._bubbleUp();
     }
+
+    addNewHighestPriority(data) {
+        const previousMin = this.peek();
+        const highestPriority = previousMin.priority - 1;
+        this.add({data: data, priority: highestPriority});
+    }
   
     popMin() {
         if (this.isEmpty()) {
-            return null 
+            throw new Error('PriorityQueue is empty');
         }
         const min = this.heap[1];
         this.heap[1] = this.heap[this.size];
@@ -29,9 +34,10 @@ class PriorityQueue {
     }
 
     peek() {
-        return !this.isEmpty()
-            ? this.heap[1]
-            : null
+        if (this.isEmpty()) {
+            throw new Error('PriorityQueue is empty');
+        } 
+        return this.heap[1];
     }
 
     printQueue() {
@@ -39,36 +45,36 @@ class PriorityQueue {
     }
   
     _bubbleUp() {
-        let current = this.size;
-        while (current > 1 && this.heap[getParent(current)].priority > this.heap[current].priority) {
-            this._swap(current, getParent(current));
-            current = getParent(current);
+        let currentIndex = this.size;
+        while (currentIndex > 1 && this.heap[getParentIndex(currentIndex)].priority > this.heap[currentIndex].priority) {
+            this._swap(currentIndex, getParentIndex(currentIndex));
+            currentIndex = getParentIndex(currentIndex);
         }
     }
   
     _heapify() {
-        let current = 1;
-        let leftChild = getLeft(current);
-        let rightChild = getRight(current);
-        // Check that there is something to swap (only need to check the left if both exist)
-        while (this._canSwap(current, leftChild, rightChild)){
+        let currentIndex = 1;
+        let leftChildIndex = getLeftChildIndex(currentIndex);
+        let rightChildIndex = getRightChildIndex(currentIndex);
+        // Check that there is something to swap
+        while (this._canSwap(currentIndex, leftChildIndex, rightChildIndex)){
             // Only compare left & right if they both exist
-            if (this._exists(leftChild) && this._exists(rightChild)) {
+            if (this._exists(leftChildIndex) && this._exists(rightChildIndex)) {
                 // Make sure to swap with the smaller of the two children
-                if (this.heap[leftChild].priority < this.heap[rightChild].priority) {
-                    this._swap(current, leftChild);
-                    current = leftChild;
+                if (this.heap[leftChildIndex].priority < this.heap[rightChildIndex].priority) {
+                    this._swap(currentIndex, leftChildIndex);
+                    currentIndex = leftChildIndex;
                 } else {
-                    this._swap(current, rightChild);
-                    current = rightChild;
+                    this._swap(currentIndex, rightChildIndex);
+                    currentIndex = rightChildIndex;
                 }
             } else {
                 // If only one child exist, always swap with the left
-                this._swap(current, leftChild);
-                current = leftChild;
+                this._swap(currentIndex, leftChildIndex);
+                currentIndex = leftChildIndex;
             }
-            leftChild = getLeft(current);
-            rightChild = getRight(current);
+            leftChildIndex = getLeftChildIndex(currentIndex);
+            rightChildIndex = getRightChildIndex(currentIndex);
         }
     }
 
@@ -85,7 +91,6 @@ class PriorityQueue {
     }
   
     _canSwap(current, leftChild, rightChild) {
-        // Check that one of the possible swap conditions exists
         return (
             this._exists(leftChild) && this.heap[current].priority > this.heap[leftChild].priority
             || this._exists(rightChild) && this.heap[current].priority > this.heap[rightChild].priority
@@ -93,22 +98,22 @@ class PriorityQueue {
     }
 }
   
-const getParent = current => Math.floor((current / 2));
-const getLeft = current => current * 2;
-const getRight = current => current * 2 + 1;
-
-
+const getParentIndex = current => Math.floor((current / 2));
+const getLeftChildIndex = current => current * 2;
+const getRightChildIndex = current => current * 2 + 1;
 
 // helper function to return a random integer
 function randomize() { return Math.floor(Math.random() * 50); }
 
-// const rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+const rainbow = ['orange', 'yellow', 'green', 'blue'];
 
-// const priorityQueue = new PriorityQueue();
-// rainbow.forEach(color => priorityQueue.add({data: color, priority: randomize()}));
+const priorityQueue = new PriorityQueue();
+rainbow.forEach(color => priorityQueue.add({data: color, priority: randomize()}));
 
-// priorityQueue.printQueue();
+priorityQueue.printQueue();
 
+priorityQueue.addNewHighestPriority('red');
+priorityQueue.printQueue();
 
 
 module.exports = PriorityQueue;

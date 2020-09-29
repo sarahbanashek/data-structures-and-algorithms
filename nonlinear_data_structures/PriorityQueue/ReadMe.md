@@ -11,6 +11,9 @@ const priorityQueue = new PriorityQueue();
 
 ## Methods
 ### \#.add()
+```
+priorityQueue.add({data, priority});
+```
 Takes the following object as an argument: `{data, priority}`. Pushes the object onto the `heap` array, then uses the `bubbleUp` method to restore the order of the heap.
 ```
 const rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
@@ -31,8 +34,35 @@ priorityQueue.printQueue();
 >>>   { data: 'violet', priority: 49 } ]
 ```
 
+### \#.addNewHighestPriority()
+```
+priorityQueue.addNewHighestPriority(data);
+```
+Takes data as an argument and uses the `add` method to add a new object with the given data and a priority of one less than the previous highest priority value.
+```
+priorityQueue.printQueue();
+>>>  [ null,
+>>>    { data: 'yellow', priority: 15 },
+>>>    { data: 'orange', priority: 26 },
+>>>    { data: 'green', priority: 18 },
+>>>    { data: 'blue', priority: 28 } ]
+
+priorityQueue.addNewHighestPriority('red');
+
+priorityQueue.printQueue();
+>>>  [ null,
+>>>    { data: 'red', priority: 14 },
+>>>    { data: 'yellow', priority: 15 },
+>>>    { data: 'green', priority: 18 },
+>>>    { data: 'blue', priority: 28 },
+>>>    { data: 'orange', priority: 26 } ]
+```
+
 ### \#.isEmpty()
 Returns `true` if the size of the priority queue is zero, otherwise returns `false`.
+```
+priorityQueue.isEmpty();
+```
 
 ### \#.peek()
 Returns the highest priority object in the priority queue without removing it.
