@@ -45,7 +45,7 @@ console.log(min);
 ### \#.popMin()
 Removes and returns the minimum value in the heap. 
 
-This process swaps the min value (at index 1) with the last element of the heap, then pops the min value from the end of the heap. The `heapify` method is then used to find the new min and restore the order of the heap.
+This process replaces the min value (at index 1) with the last element of the heap. The `heapify` method is then used to find the new min and restore the order of the heap.
 ```
 minHeap.printHeap();
 >>> [ null, 10, 11, 14, 38, 31, 29 ]
