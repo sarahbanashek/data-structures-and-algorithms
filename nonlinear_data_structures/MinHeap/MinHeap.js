@@ -19,7 +19,7 @@ class MinHeap {
 
     popMin() {
         if (this.size === 0) {
-            return null;
+            throw new Error('MinHeap is empty');
         }
         if(this.logger !== null) {
             this.logger.log(`${this.heap[1]} is swapped with ${this.heap[this.size]}`);
@@ -35,6 +35,13 @@ class MinHeap {
             this.logger.log(`New heap: [${this.heap}]`);
         }
         return min;
+    }
+
+    peek(){
+        if (this.size === 0) {
+            throw new Error('MinHeap is empty');
+        }
+        return this.heap[1];
     }
     
     printHeap() {
@@ -98,20 +105,4 @@ const getLeftChildIndex = index => index * 2;
 const getRightChildIndex = index => index * 2 + 1;
 
 
-const minHeap = new MinHeap(console);
-
-// helper function to return a random integer
-function randomize() { return Math.floor(Math.random() * 40); }
-
-
-// populate minHeap with random numbers
-for (let i=0; i < 6; i++) {
-  minHeap.add(randomize());
-}
-
-minHeap.printHeap();
-
-// remove min
-minHeap.popMin();
-
-minHeap.printHeap();
+module.exports = MinHeap;

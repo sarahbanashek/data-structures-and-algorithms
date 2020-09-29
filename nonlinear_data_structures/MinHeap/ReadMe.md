@@ -34,6 +34,14 @@ minHeap.add(2);
 >>> New heap: [,2,5]
 ```
 
+### \#.peek()
+Returns the minimum value in the heap without modifying the heap.
+```
+const min = minHeap.peek();
+console.log(min);
+>>>  2 
+```
+
 ### \#.popMin()
 Removes and returns the minimum value in the heap. 
 
