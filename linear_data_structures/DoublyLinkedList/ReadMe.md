@@ -18,7 +18,7 @@ Given data as an argument, creates a new node and adds it to the head of the lis
 list.addToHead('some data');
 
 list.printList();
->>> <HEAD> some data <TAIL>
+>>>  <HEAD> some data <TAIL>
 ```
 
 ### \#.addToTail()
@@ -27,48 +27,57 @@ Given data as an argument, creates a new node and adds it to the `tail` of the l
 list.addToTail('some more data');
 
 list.printList();
->>> <HEAD> some data, some more data <TAIL>
+>>>  <HEAD> some data, some more data <TAIL>
 ```
 
 ### \#.removeHead()
-Removes the node stored in the `head` property and sets that node's `next` node as the new `head`.
+Removes the node stored in the `head` property and sets that node's `next` node as the new `head`. Returns the data stored by the removed head.
 ```
 list.printList();
->>> <HEAD> 1, 2, 3 <TAIL>
+>>>  <HEAD> 1, 2, 3 <TAIL>
 
-list.removeHead();
+const removedHead = list.removeHead();
 
 list.printList();
->>> <HEAD> 2, 3 <TAIL>
+>>>  <HEAD> 2, 3 <TAIL>
+
+console.log(removedHead);
+>>>  1
 ```
 
 ### \#.removeTail()
-Removes the node stored in the `tail` property and sets that node's `previous` node as the new `tail`.
+Removes the node stored in the `tail` property and sets that node's `previous` node as the new `tail`. Returns the data stored by the removed tail.
 ```
 list.printList();
->>> <HEAD> 1, 2, 3 <TAIL>
+>>>  <HEAD> 1, 2, 3 <TAIL>
 
-list.removeTail();
+const removedTail = list.removeTail();
 
 list.printList();
->>> <HEAD> 1, 2 <TAIL>
+>>>  <HEAD> 1, 2 <TAIL>
+
+console.log(removedTail);
+>>>  3
 ```
 
 ### \#.removeByData()
-Given the data of any node in the list, redirects that node's surrounding nodes to point to each other. (The given node's `previous` node will have its `next` property updated to the given node's `next` node.)
+Given the data of any node in the list, redirects that node's surrounding nodes to point to each other. (The given node's `previous` node will have its `next` property updated to the given node's `next` node.) Returns the data stored by the removed node.
 ```
 list.printList();
->>> <HEAD> 1, 2, 3 <TAIL>
+>>>  <HEAD> 1, 2, 3 <TAIL>
 
-list.removeByData(2);
+const removedNode = list.removeByData(2);
 
 list.printList();
->>> <HEAD> 1, 3 <TAIL>
+>>>  <HEAD> 1, 3 <TAIL>
+
+console.log(removedNode);
+>>>  2
 ```
 
 ### \#.printList()
 Prints to the console the information stored in each node's `data` property in order from the linked list's `head` to its `tail`. `<HEAD>` and `<TAIL>` markers are added to denote the start and end of the list.
 ```
 list.printList();
->>> <HEAD> 1, 2, 3 <TAIL>
+>>>  <HEAD> 1, 2, 3 <TAIL>
 ```
