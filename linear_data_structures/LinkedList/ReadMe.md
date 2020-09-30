@@ -18,7 +18,7 @@ Given data as an argument, creates a new node and adds it to the head of the lis
 list.addToHead('some data');
 
 list.printList();
->>> <HEAD> some data <TAIL>
+>>>  <HEAD> some data <TAIL>
 ```
 
 ### \#.addToTail()
@@ -27,24 +27,27 @@ Given data as an argument, creates a new node and adds it to the `tail` of the l
 list.addToTail('some more data');
 
 list.printList();
->>> <HEAD> some data, some more data <TAIL>
+>>>  <HEAD> some data, some more data <TAIL>
 ```
 
 ### \#.removeHead()
-Removes the node stored in the `head` property and sets that node's `next` node as the new `head`.
+Removes the node stored in the `head` property and sets that node's `next` node as the new `head`. Returns the data stored by the removed head.
 ```
 list.printList();
 >>> <HEAD> 1, 2, 3 <TAIL>
 
-list.removeHead();
+const removedHead = list.removeHead();
 
 list.printList();
->>> <HEAD> 2, 3 <TAIL>
+>>>  <HEAD> 2, 3 <TAIL>
+
+console.log(removedHead);
+>>>  1
 ```
 
 ### \#.printList()
 Prints to the console the information stored in each node's `data` property in order from the linked list's `head` to its `tail`. `<HEAD>` and `<TAIL>` markers are added to denote the start and end of the list.
 ```
 list.printList();
->>> <HEAD> 1, 2, 3 <TAIL>
+>>>  <HEAD> 1, 2, 3 <TAIL>
 ```
