@@ -106,7 +106,7 @@ class Graph {
         const visitQueue = new Queue();
         visitQueue.enqueue(startingVertex);
 
-        while (!visitQueue.isEmpty()) {
+        while (!visitQueue._isEmpty()) {
             const current = visitQueue.dequeue();
 
             current.edges.forEach(edge => {
