@@ -35,7 +35,7 @@ class DoublyLinkedList {
     removeHead() {
         const removedHead = this.head;
         if (!removedHead) {
-            return;
+            throw new Error('There is no head node to remove');
         }
         this.head = removedHead.getNextNode();
         if (this.head) {
@@ -50,7 +50,7 @@ class DoublyLinkedList {
     removeTail() {
         const removedTail = this.tail;
         if (!removedTail) {
-            return;
+            throw new Error('There is no tail node to remove');
         }
         this.tail = removedTail.getPreviousNode();
         if (this.tail) {
@@ -86,7 +86,7 @@ class DoublyLinkedList {
             nextNode.setPreviousNode(previousNode);
             previousNode.setNextNode(nextNode);
         }
-        return nodeToRemove;
+        return nodeToRemove.data;
     }
 
     printList() {
@@ -104,24 +104,6 @@ class DoublyLinkedList {
         console.log(output);
     }
 }
-
-const subway = new DoublyLinkedList();
-
-subway.addToHead(1);
-// subway.addToHead(2);
-// subway.addToHead(3);
-
-subway.addToTail(2);
-subway.addToTail(3);
-// subway.addToTail('BrooklynBridge');
-
-// subway.removeHead();
-// subway.removeTail();
-subway.removeByData(2);
-
-subway.printList();
-
-
 
 
 module.exports = DoublyLinkedList;
