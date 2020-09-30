@@ -22,7 +22,7 @@ class LinkedList {
             while (tail.getNextNode()) {
                 tail = tail.getNextNode();
             }
-            tail.setNextNode(new Node(data));
+            tail.setNextNode(data);
         }
     }
 
@@ -51,14 +51,5 @@ class LinkedList {
     }
 }
 
-const seasons = new LinkedList();
-seasons.addToHead(1);
-// seasons.addToHead('spring');
-
-seasons.addToTail(2);
-seasons.addToTail(3);
-seasons.removeHead();
-
-seasons.printList();  
 
 module.exports = LinkedList;
