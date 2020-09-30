@@ -57,12 +57,5 @@ class Queue {
     }
 }
 
-// const queue = new Queue(Infinity, console);
-// queue.enqueue('First in');
-// queue.enqueue('Second in');
-// queue.enqueue('Third in');
-// console.log(queue.peek());
-// // queue.dequeue();
-// queue.printQueue();
 
 module.exports = Queue;
