@@ -9,7 +9,7 @@ class Queue {
     }
 
     enqueue(data) {
-        if (this._hasRoom()) {
+        if (this.hasRoom()) {
             this.queue.addToTail(data);
             this.size++;
             if(this.logger !== null) {
@@ -21,7 +21,7 @@ class Queue {
     }
 
     dequeue() {
-        if (!this._isEmpty()) {
+        if (!this.isEmpty()) {
             const data = this.queue.removeHead();
             this.size--;
             if (this.logger !== null) {
@@ -34,20 +34,20 @@ class Queue {
         
     }
 
-    _hasRoom() {
+    hasRoom() {
         return this.size < this.maxSize
             ? true
             : false;
     }
 
-    _isEmpty() {
+    isEmpty() {
         return this.size === 0
             ? true
             : false;
     }
 
     peek() {
-        return !this._isEmpty()
+        return !this.isEmpty()
             ? this.queue.head.data
             : null;
     }
