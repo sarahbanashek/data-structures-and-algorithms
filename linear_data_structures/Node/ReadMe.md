@@ -41,7 +41,7 @@ console.log( node.getNextNode() );
 >>> Node { data: 'some data', next: null, previous: null }
 ```
 
-### \#.getNextNode()
+### \#.getPreviousNode()
 Returns the node stored in the given node's `previous` property.
 ```
 console.log( node.getPreviousNode() );
