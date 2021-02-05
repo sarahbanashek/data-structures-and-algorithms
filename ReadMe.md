@@ -35,7 +35,7 @@ A priority queue is a data structure in which each node is assigned a priority a
 
 In this case, the priority queue is implemented with a [min heap](./nonlinear_data_structures/MinHeap/ReadMe.md).
 
-### [- Graph](./nonlinear_data_structures/graphs/ReadMe.md)
+### [- Graph](./nonlinear_data_structures/Graph/ReadMe.md)
 A graph is a data structure consisting of a set of vertices and the edges that connect them.
 
 ## Sorting Algorithms
