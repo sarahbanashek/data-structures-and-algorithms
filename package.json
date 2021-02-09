@@ -2,7 +2,7 @@
   "name": "data_structures",
   "version": "1.0.0",
   "description": "",
-  "main": "scriptToAddIlluminateItems.js",
+  "main": "node.js",
   "scripts": {
     "test": "jest"
   },
